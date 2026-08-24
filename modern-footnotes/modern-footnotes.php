@@ -4,7 +4,7 @@ Plugin Name: Modern Footnotes
 Plugin URI:  http://prismtechstudios.com/modern-footnotes
 Text Domain: modern-footnotes
 Description: Add inline footnotes to your post via the footnote icon on the toolbar for editing posts and pages. Or, use the [mfn] or [modern_footnote] shortcodes [mfn]like this[/mfn].
-Version:     1.5.0
+Version:     1.5.1
 Author:      Prism Tech Studios
 Author URI:  http://prismtechstudios.com/
 License:     GPL2
@@ -14,7 +14,7 @@ License URI: https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html
 //don't let users call this file directly
 defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
 
-$modern_footnotes_version = '1.5.0';
+$modern_footnotes_version = '1.5.1';
 
 $modern_footnotes_options = get_option('modern_footnotes_settings');
 
@@ -178,6 +178,10 @@ function modern_footnotes_func($atts, $content = "") {
       'content' => $content,
       'id' => $id
   );
+
+  if (!isset($GLOBALS['current_modern_footnotes_post_number'])) {
+ 	 $GLOBALS['current_modern_footnotes_post_number'] = 0;
+  }
   
   if (!isset($modern_footnotes_all_posts_data[$scope_id])) {
     $modern_footnotes_all_posts_data[$scope_id] = array(
